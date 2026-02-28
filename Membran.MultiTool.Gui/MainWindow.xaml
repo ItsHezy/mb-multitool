@@ -1,0 +1,202 @@
+<Window x:Class="Membran.MultiTool.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Membran MultiTool v1"
+        Height="760"
+        Width="1180"
+        MinWidth="960"
+        MinHeight="640">
+    <Grid Margin="12">
+        <TabControl>
+            <TabItem Header="Geo">
+                <Grid Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                        <TextBlock VerticalAlignment="Center" Text="IP:" Margin="0,0,8,0" />
+                        <TextBox x:Name="GeoIpTextBox"
+                                 Width="240"
+                                 VerticalAlignment="Center"
+                                 Text="self" />
+                        <Button x:Name="UseMyIpButton"
+                                Width="100"
+                                Margin="8,0,0,0"
+                                Click="UseMyIpButton_Click"
+                                Content="Use My IP" />
+                        <Button x:Name="LookupGeoButton"
+                                Width="90"
+                                Margin="8,0,0,0"
+                                Click="LookupGeoButton_Click"
+                                Content="Lookup" />
+                    </StackPanel>
+
+                    <Border Grid.Row="1"
+                            Padding="12"
+                            BorderBrush="#FFD0D0D0"
+                            BorderThickness="1"
+                            CornerRadius="4">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TextBlock x:Name="GeoResultTextBlock"
+                                       FontFamily="Consolas"
+                                       TextWrapping="Wrap"
+                                       Text="Geo results will appear here." />
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Uninstall">
+                <Grid Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+                        <TextBlock VerticalAlignment="Center" Text="Search:" Margin="0,0,8,0" />
+                        <TextBox x:Name="SearchAppsTextBox"
+                                 Width="300"
+                                 VerticalAlignment="Center"
+                                 TextChanged="SearchAppsTextBox_TextChanged" />
+                        <Button x:Name="RefreshAppsButton"
+                                Width="90"
+                                Margin="8,0,0,0"
+                                Click="RefreshAppsButton_Click"
+                                Content="Refresh" />
+                    </StackPanel>
+
+                    <DataGrid x:Name="AppsDataGrid"
+                              Grid.Row="1"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="AppId" Binding="{Binding AppId}" Width="160" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding DisplayName}" Width="2*" />
+                            <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" Width="2*" />
+                            <DataGridTextColumn Header="Version" Binding="{Binding Version}" Width="*" />
+                            <DataGridCheckBoxColumn Header="System" Binding="{Binding IsSystemComponent}" Width="80" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,10,0,10">
+                        <TextBlock VerticalAlignment="Center" Text="Manual Rule:" Margin="0,0,8,0" />
+                        <TextBox x:Name="ManualRulePathTextBox"
+                                 Width="420"
+                                 VerticalAlignment="Center" />
+                        <Button x:Name="BrowseManualRuleButton"
+                                Width="80"
+                                Margin="8,0,0,0"
+                                Click="BrowseManualRuleButton_Click"
+                                Content="Browse" />
+                        <Button x:Name="PreviewPlanButton"
+                                Width="90"
+                                Margin="8,0,0,0"
+                                Click="PreviewPlanButton_Click"
+                                Content="Preview" />
+                        <CheckBox x:Name="ConfirmExecuteCheckBox"
+                                  VerticalAlignment="Center"
+                                  Margin="12,0,0,0"
+                                  Content="I confirm execution" />
+                        <Button x:Name="ExecutePlanButton"
+                                Width="90"
+                                Margin="8,0,0,0"
+                                Click="ExecutePlanButton_Click"
+                                Content="Execute" />
+                    </StackPanel>
+
+                    <DataGrid x:Name="ArtifactsDataGrid"
+                              Grid.Row="3"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="160" />
+                            <DataGridTextColumn Header="Target" Binding="{Binding PathOrKey}" Width="3*" />
+                            <DataGridTextColumn Header="Risk" Binding="{Binding RiskLevel}" Width="100" />
+                            <DataGridTextColumn Header="Evidence" Binding="{Binding Evidence}" Width="2*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <TextBlock x:Name="UninstallStatusTextBlock"
+                               Grid.Row="4"
+                               Margin="0,10,0,0"
+                               TextWrapping="Wrap"
+                               FontFamily="Consolas"
+                               Text="Uninstall status will appear here." />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Reports">
+                <Grid Margin="8">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="RefreshReportsButton"
+                            Width="120"
+                            Margin="0,0,0,8"
+                            Click="RefreshReportsButton_Click"
+                            Content="Refresh Reports" />
+
+                    <DataGrid x:Name="ReportsDataGrid"
+                              Grid.Row="1"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionChanged="ReportsDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="PlanId" Binding="{Binding PlanId}" Width="220" />
+                            <DataGridTextColumn Header="Removed" Binding="{Binding RemovedCount}" Width="120" />
+                            <DataGridTextColumn Header="Failed" Binding="{Binding FailedCount}" Width="120" />
+                            <DataGridTextColumn Header="CompletedAt" Binding="{Binding CompletedAt}" Width="2*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <TextBox x:Name="ReportDetailsTextBox"
+                             Grid.Row="2"
+                             Margin="0,8,0,0"
+                             IsReadOnly="True"
+                             FontFamily="Consolas"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Settings">
+                <StackPanel Margin="12">
+                    <TextBlock Text="Provider Priority:" FontWeight="Bold" />
+                    <TextBlock Margin="0,4,0,10" Text="1) ipapi.co  2) ipinfo.io" />
+
+                    <CheckBox x:Name="DryRunSettingCheckBox"
+                              Content="Dry-run default for Execute"
+                              Margin="0,0,0,6" />
+                    <CheckBox x:Name="RestorePointSettingCheckBox"
+                              IsChecked="True"
+                              Content="Attempt restore point before execution"
+                              Margin="0,0,0,12" />
+
+                    <TextBlock Text="Allowed File Roots:" FontWeight="Bold" />
+                    <TextBox x:Name="AllowedRootsTextBox"
+                             Margin="0,6,0,0"
+                             IsReadOnly="True"
+                             FontFamily="Consolas"
+                             Height="220"
+                             VerticalScrollBarVisibility="Auto"
+                             TextWrapping="Wrap" />
+                </StackPanel>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

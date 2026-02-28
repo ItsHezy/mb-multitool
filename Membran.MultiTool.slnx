@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="Membran.MultiTool.Cli/Membran.MultiTool.Cli.csproj" />
+  <Project Path="Membran.MultiTool.Core/Membran.MultiTool.Core.csproj" />
+  <Project Path="Membran.MultiTool.Geo/Membran.MultiTool.Geo.csproj" />
+  <Project Path="Membran.MultiTool.Gui/Membran.MultiTool.Gui.csproj" />
+  <Project Path="Membran.MultiTool.Osint/Membran.MultiTool.Osint.csproj" />
+  <Project Path="Membran.MultiTool.Tests/Membran.MultiTool.Tests.csproj" />
+  <Project Path="Membran.MultiTool.Uninstall/Membran.MultiTool.Uninstall.csproj" />
+</Solution>
