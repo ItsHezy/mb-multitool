@@ -5,7 +5,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$project = Join-Path $repoRoot 'Membran.MultiTool.Cli\Membran.MultiTool.Cli.csproj'
+$project = Join-Path $repoRoot 'Membran.MultiTool\Membran.MultiTool.Cli\Membran.MultiTool.Cli.csproj'
 $distRoot = Join-Path $repoRoot 'dist'
 $portableRoot = Join-Path $distRoot 'mb-portable'
 $publishDir = Join-Path $portableRoot '_publish'

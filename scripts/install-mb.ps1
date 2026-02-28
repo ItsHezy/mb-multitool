@@ -6,7 +6,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$project = Join-Path $repoRoot 'Membran.MultiTool.Cli\Membran.MultiTool.Cli.csproj'
+$project = Join-Path $repoRoot 'Membran.MultiTool\Membran.MultiTool.Cli\Membran.MultiTool.Cli.csproj'
 $installRoot = Join-Path $env:LOCALAPPDATA 'mb'
 $binDir = Join-Path $installRoot 'bin'
 $cmdDir = Join-Path $installRoot 'cmd'
